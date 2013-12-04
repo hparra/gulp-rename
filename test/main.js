@@ -78,7 +78,6 @@ describe("gulp-rename", function () {
 		});
 	});
 
-
 	// hello.min.txt
 	it("should handle files with 'multiple extensions'", function (done) {
 
@@ -96,4 +95,25 @@ describe("gulp-rename", function () {
 			done();
 		});
 	});
+
+	// WONTFIX:
+	// tricky hello.min.txt
+	// it("should complex rename of files with 'multiple extensions'", function (done) {
+
+	// 	var obj = {
+	// 		prefix: "bonjour-",
+	// 		suffix: "-hola",
+	// 		ext: ".md"
+	// 	};
+
+	// 	var stream = gulp.src("./test/fixtures/hello.min.txt").pipe(rename(obj));
+
+	// 	stream.on("error", done);
+	// 	stream.on("data", function (file) {
+	// 		String(file.path).should.equal("test/fixtures/bonjour-hello-hola.min.md");
+	// 	});
+	// 	stream.on("end", function () {
+	// 		done();
+	// 	});
+	// });
 });
