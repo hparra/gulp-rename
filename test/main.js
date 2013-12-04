@@ -11,8 +11,9 @@ describe("gulp-rename", function () {
 	// string
 	it("should rename file with a string", function (done) {
 
-		var stream = gulp.src("./test/fixtures/hello.txt")
-						.pipe(rename("hola.md"));
+		var obj = "hola.md";
+
+		var stream = gulp.src("./test/fixtures/hello.txt").pipe(rename(obj));
 
 		stream.on("error", done);
 		stream.on("data", function (file) {
@@ -26,10 +27,11 @@ describe("gulp-rename", function () {
 	// function
 	it("should rename file with a function", function (done) {
 
-		var stream = gulp.src("./test/fixtures/hello.txt")
-						.pipe(rename(function (dir, base, ext) {
-							return base + "-hola" + ext;
-						}));
+		var obj = function (dir, base, ext) {
+			return base + "-hola" + ext;
+		};
+
+		var stream = gulp.src("./test/fixtures/hello.txt").pipe(rename(obj));
 
 		stream.on("error", done);
 		stream.on("data", function (file) {
@@ -49,12 +51,46 @@ describe("gulp-rename", function () {
 			ext: ".md"
 		};
 
-		var stream = gulp.src("./test/fixtures/hello.txt")
-						.pipe(rename(obj));
+		var stream = gulp.src("./test/fixtures/hello.txt").pipe(rename(obj));
 
 		stream.on("error", done);
 		stream.on("data", function (file) {
 			String(file.path).should.equal("test/fixtures/bonjour-hello-hola.md");
+		});
+		stream.on("end", function () {
+			done();
+		});
+	});
+
+	// empty hash
+	it("should not rename file with an empty hash/object", function (done) {
+
+		var obj = {};
+
+		var stream = gulp.src("./test/fixtures/hello.txt").pipe(rename(obj));
+
+		stream.on("error", done);
+		stream.on("data", function (file) {
+			String(file.path).should.equal("test/fixtures/hello.txt");
+		});
+		stream.on("end", function () {
+			done();
+		});
+	});
+
+
+	// hello.min.txt
+	it("should handle files with 'multiple extensions'", function (done) {
+
+		var obj = {
+			ext: ".md"
+		};
+
+		var stream = gulp.src("./test/fixtures/hello.min.txt").pipe(rename(obj));
+
+		stream.on("error", done);
+		stream.on("data", function (file) {
+			String(file.path).should.equal("test/fixtures/hello.min.md");
 		});
 		stream.on("end", function () {
 			done();
