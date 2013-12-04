@@ -1,0 +1,42 @@
+
+{
+  "name": "gulp-rename",
+  "version": "0.1.0",
+  "description": "A plugin for Gulp",
+  "keywords": [
+    "gulpplugin"
+  ],
+  "homepage": "https://github.com/hparra/gulp-rename",
+  "bugs": "https://github.com/hparra/gulp-rename/issues",
+  "author": {
+    "name": "Hector Guillermo Parra Alvarez",
+    "email": "hector@hectorparra.com",
+    "url": "https://github.com/hparra"
+  },
+  "main": "./index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/hparra/gulp-rename.git"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "event-stream": "*"
+  },
+  "devDependencies": {
+    "mocha": "~1.14.0",
+    "should": "~2.1.0",
+    "gulp": "~2.6.1",
+    "gulp-jshint": "~1.1.0"
+  },
+  "engines": {
+    "node": ">=0.8.0",
+    "npm": ">=1.2.10"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ]
+}
