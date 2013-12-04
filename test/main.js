@@ -39,4 +39,25 @@ describe("gulp-rename", function () {
 			done();
 		});
 	});
+
+	// hash
+	it("should rename file with a hash/object", function (done) {
+
+		var obj = {
+			prefix: "bonjour-",
+			suffix: "-hola",
+			ext: ".md"
+		};
+
+		var stream = gulp.src("./test/fixtures/hello.txt")
+						.pipe(rename(obj));
+
+		stream.on("error", done);
+		stream.on("data", function (file) {
+			String(file.path).should.equal("test/fixtures/bonjour-hello-hola.md");
+		});
+		stream.on("end", function () {
+			done();
+		});
+	});
 });

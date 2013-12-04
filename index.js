@@ -21,6 +21,13 @@ module.exports = function (obj) {
 		} else if (typeof obj === "function") {
 			file.shortened = obj(dir, base, ext);
 			file.path = path.join(dir, file.shortened);
+		} else if (typeof obj === "object") {
+			var prefix = obj.prefix || "",
+				suffix = obj.suffix || "",
+				extension = obj.ext || ext;
+
+			file.shortened = prefix + base + suffix + extension;
+			file.path = path.join(dir, file.shortened);
 		}
 
 		callback(null, file);

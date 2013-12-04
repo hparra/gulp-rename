@@ -20,7 +20,20 @@ gulp.src("./src/hello.txt")
 		return base + "-goodbye" + ext;
 	}))
 	.pipe(gulp.dest("./dist")); // ./dist/hello-goodbye.txt
+
+// rename via hash
+gulp.src("./src/hello.txt")
+	.pipe(rename({
+		prefix: "bonjour-",
+		suffix: "-hola",
+		ext: ".md"
+	}))
+	.pipe(gulp.dest("./dist")); // ./dist/bonjour-hello-hola.md
 ```
+
+## Notes
+
+`ext` follows the node convention in that it includes the period.
 
 ## License
 
