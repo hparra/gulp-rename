@@ -8,6 +8,7 @@ var gulp = require("gulp"),
 	rename = require("../");
 
 describe("gulp-rename", function () {
+	// string
 	it("should rename file with a string", function (done) {
 
 		var stream = gulp.src("./test/fixtures/hello.txt")
@@ -20,6 +21,22 @@ describe("gulp-rename", function () {
 		stream.on("end", function () {
 			done();
 		});
+	});
 
+	// function
+	it("should rename file with a function", function (done) {
+
+		var stream = gulp.src("./test/fixtures/hello.txt")
+						.pipe(rename(function (dir, base, ext) {
+							return base + "-hola" + ext;
+						}));
+
+		stream.on("error", done);
+		stream.on("data", function (file) {
+			String(file.path).should.equal("test/fixtures/hello-hola.txt");
+		});
+		stream.on("end", function () {
+			done();
+		});
 	});
 });

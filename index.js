@@ -11,12 +11,15 @@ module.exports = function (obj) {
 		}
 
 		// helper variables
-		var dir = path.dirname(file.path);
-			// ext = path.extname(file.path),
-			// base = path.basename(file.path, ext);
+		var dir = path.dirname(file.path),
+			ext = path.extname(file.path),
+			base = path.basename(file.path, ext);
 
 		if (typeof obj === "string") {
 			file.shortened = obj;
+			file.path = path.join(dir, file.shortened);
+		} else if (typeof obj === "function") {
+			file.shortened = obj(dir, base, ext);
 			file.path = path.join(dir, file.shortened);
 		}
 
