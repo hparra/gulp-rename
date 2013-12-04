@@ -2,7 +2,7 @@
 {
   "name": "gulp-rename",
   "version": "0.1.0",
-  "description": "A plugin for Gulp",
+  "description": "Rename files",
   "keywords": [
     "gulpplugin"
   ],
