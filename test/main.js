@@ -82,7 +82,7 @@ describe("gulp-rename", function () {
 	it("should handle files with 'multiple extensions'", function (done) {
 
 		var obj = {
-			ext: ".md"
+			ext: ".min.md"
 		};
 
 		var stream = gulp.src("./test/fixtures/hello.min.txt").pipe(rename(obj));
@@ -96,24 +96,23 @@ describe("gulp-rename", function () {
 		});
 	});
 
-	// WONTFIX:
-	// tricky hello.min.txt
-	// it("should complex rename of files with 'multiple extensions'", function (done) {
+	//tricky hello.min.txt
+	it("should complex rename of files with 'multiple extensions'", function (done) {
 
-	// 	var obj = {
-	// 		prefix: "bonjour-",
-	// 		suffix: "-hola",
-	// 		ext: ".md"
-	// 	};
+		var obj = {
+			prefix: "bonjour-",
+			suffix: "-hola",
+			ext: ".min.md"
+		};
 
-	// 	var stream = gulp.src("./test/fixtures/hello.min.txt").pipe(rename(obj));
+		var stream = gulp.src("./test/fixtures/hello.min.txt").pipe(rename(obj));
 
-	// 	stream.on("error", done);
-	// 	stream.on("data", function (file) {
-	// 		String(file.path).should.equal("test/fixtures/bonjour-hello-hola.min.md");
-	// 	});
-	// 	stream.on("end", function () {
-	// 		done();
-	// 	});
-	// });
+		stream.on("error", done);
+		stream.on("data", function (file) {
+			String(file.path).should.equal("test/fixtures/bonjour-hello-hola.min.md");
+		});
+		stream.on("end", function () {
+			done();
+		});
+	});
 });

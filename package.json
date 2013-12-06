@@ -1,4 +1,3 @@
-
 {
   "name": "gulp-rename",
   "version": "0.1.0",
@@ -25,9 +24,9 @@
     "event-stream": "*"
   },
   "devDependencies": {
-    "mocha": "~1.14.0",
+    "mocha": "~1.15.0",
     "should": "~2.1.0",
-    "gulp": "~2.6.1",
+    "gulp": "~2.7.0",
     "gulp-jshint": "~1.1.0"
   },
   "engines": {
