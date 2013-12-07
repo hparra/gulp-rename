@@ -115,4 +115,28 @@ describe("gulp-rename", function () {
 			done();
 		});
 	});
+
+	// function arguments integrity (identity)
+	it("should pass correct arguments to renaming function", function (done) {
+
+	    var path = "test/fixtures/hello.min.txt";
+
+	    var obj = function (dir, base, ext) {
+	        dir.should.equal("test/fixtures");
+	        base.should.equal("hello.min");
+	        ext.should.equal(".txt");
+
+	        return base + ext;
+	    };
+
+	    var stream = gulp.src(path).pipe(rename(obj));
+
+	    stream.on("error", done);
+	    stream.on("data", function (file) {
+	        String(file.base + file.relative).should.equal(path);
+	    });
+	    stream.on("end", function () {
+	        done();
+	    });
+	});
 });
