@@ -2,6 +2,7 @@
 
 var gulp = require("gulp"),
 	fs = require("fs"),
+	cp = require("child_process"),
 	jshint = require("gulp-jshint");
 
 // JSHint
@@ -47,4 +48,11 @@ gulp.task("jshint", function () {
 // default task
 gulp.task("default", function () {
 	gulp.run("jshint");
+
+	gulp.watch(["index.js", "./test/**"], function () {
+		gulp.run("jshint");
+		cp.fork("node_modules/.bin/mocha");
+	});
+
 });
+
