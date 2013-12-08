@@ -13,7 +13,7 @@ module.exports = function (obj) {
 		// helper variables
 		var relativePath = path.relative(file.cwd, file.path),
 			dir = path.dirname(relativePath),
-			fisrtname = file.path.substr(file.path.indexOf(".", 1)),
+			firstname = file.path.substr(file.path.indexOf(".", 1)),
 			ext = file.path.substr(file.path.lastIndexOf(".")),
 			base = path.basename(file.path, ext),
 			finalName = "";
@@ -32,7 +32,7 @@ module.exports = function (obj) {
 				suffix = obj.suffix || "",
 				extension = obj.ext || ext;
 
-			finalName = prefix + path.basename(file.path, fisrtname) + suffix + extension;
+			finalName = prefix + path.basename(file.path, firstname) + suffix + extension;
 
 		} else {
 			callback(new Error("Unsupported renaming parameter type supplied"), undefined);
