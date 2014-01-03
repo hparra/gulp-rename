@@ -21,7 +21,7 @@
     "test": "mocha"
   },
   "dependencies": {
-    "event-stream": "*"
+    "map-stream": "~0.0.4"
   },
   "devDependencies": {
     "mocha": "~1.15.0",

@@ -1,4 +1,4 @@
-var es = require("event-stream"),
+var map = require("map-stream"),
 	path = require("path");
 
 module.exports = function (obj) {
@@ -42,5 +42,5 @@ module.exports = function (obj) {
 		callback(null, file);
 	}
 
-	return es.map(rename);
+	return map(rename);
 };
