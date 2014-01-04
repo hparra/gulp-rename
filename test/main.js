@@ -4,7 +4,8 @@
 require("should");
 require("mocha");
 
-var gulp = require("gulp"),
+var path = require("path"),
+	gulp = require("gulp"),
 	rename = require("../");
 
 describe("gulp-rename", function () {
@@ -17,7 +18,8 @@ describe("gulp-rename", function () {
 
 		stream.on("error", done);
 		stream.on("data", function (file) {
-			String(file.base + file.relative).should.equal("test/fixtures/hola.md");
+			var expectedPath = path.resolve("test/fixtures/hola.md");
+			String(file.base + file.relative).should.equal(expectedPath);
 		});
 		stream.on("end", function () {
 			done();
@@ -35,7 +37,8 @@ describe("gulp-rename", function () {
 
 		stream.on("error", done);
 		stream.on("data", function (file) {
-			String(file.base + file.relative).should.equal("test/fixtures/hello-hola.txt");
+			var expectedPath = path.resolve("test/fixtures/hello-hola.txt");
+			String(file.base + file.relative).should.equal(expectedPath);
 		});
 		stream.on("end", function () {
 			done();
@@ -55,7 +58,8 @@ describe("gulp-rename", function () {
 
 		stream.on("error", done);
 		stream.on("data", function (file) {
-			String(file.base + file.relative).should.equal("test/fixtures/bonjour-hello-hola.md");
+			var expectedPath = path.resolve("test/fixtures/bonjour-hello-hola.md");
+			String(file.base + file.relative).should.equal(expectedPath);
 		});
 		stream.on("end", function () {
 			done();
@@ -71,7 +75,8 @@ describe("gulp-rename", function () {
 
 		stream.on("error", done);
 		stream.on("data", function (file) {
-			String(file.base + file.relative).should.equal("test/fixtures/hello.txt");
+			var expectedPath = path.resolve("test/fixtures/hello.txt");
+			String(file.base + file.relative).should.equal(expectedPath);
 		});
 		stream.on("end", function () {
 			done();
@@ -89,7 +94,8 @@ describe("gulp-rename", function () {
 
 		stream.on("error", done);
 		stream.on("data", function (file) {
-			String(file.base + file.relative).should.equal("test/fixtures/hello.min.md");
+			var expectedPath = path.resolve("test/fixtures/hello.min.md");
+			String(file.base + file.relative).should.equal(expectedPath);
 		});
 		stream.on("end", function () {
 			done();
@@ -109,7 +115,8 @@ describe("gulp-rename", function () {
 
 		stream.on("error", done);
 		stream.on("data", function (file) {
-			String(file.base + file.relative).should.equal("test/fixtures/bonjour-hello-hola.min.md");
+			var expectedPath = path.resolve("test/fixtures/bonjour-hello-hola.min.md");
+			String(file.base + file.relative).should.equal(expectedPath);
 		});
 		stream.on("end", function () {
 			done();
@@ -119,21 +126,24 @@ describe("gulp-rename", function () {
 	// function arguments integrity (identity)
 	it("should pass correct arguments to renaming function", function (done) {
 
-	    var path = "test/fixtures/hello.min.txt";
+	    var filePath = "test/fixtures/hello.min.txt";
 
 	    var obj = function (dir, base, ext) {
-	        dir.should.equal("test/fixtures");
+			var resolvedDir = path.resolve(dir);
+			var expectedDir = path.resolve("test/fixtures");
+			resolvedDir.should.equal(expectedDir);
 	        base.should.equal("hello.min");
 	        ext.should.equal(".txt");
 
 	        return base + ext;
 	    };
 
-	    var stream = gulp.src(path).pipe(rename(obj));
+	    var stream = gulp.src(filePath).pipe(rename(obj));
 
 	    stream.on("error", done);
 	    stream.on("data", function (file) {
-	        String(file.base + file.relative).should.equal(path);
+	    	var expectedPath = path.resolve(filePath);
+	        String(file.base + file.relative).should.equal(expectedPath);
 	    });
 	    stream.on("end", function () {
 	        done();
