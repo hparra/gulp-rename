@@ -8,6 +8,19 @@ var path = require("path"),
 	gulp = require("gulp"),
 	rename = require("../");
 
+var helper = function (obj, originalPath, renamedPath, done) {
+
+	var stream = gulp.src('./' + originalPath).pipe(rename(obj));
+	stream.on("error", done);
+	stream.on("data", function (file) {
+		var expectedPath = path.resolve(renamedPath);
+		String(file.base + file.relative).should.equal(expectedPath);
+	});
+	stream.on("end", function () {
+		done();
+	});
+}
+
 describe("gulp-rename", function () {
 	// string
 	it("should rename file with a string", function (done) {
@@ -149,4 +162,39 @@ describe("gulp-rename", function () {
 	        done();
 	    });
 	});
+
+	// string - path
+	it("should rename file including path with a string", function (done) {
+
+		var obj = "test/elsewhere/hello-string.md";
+		var originalPath = "test/fixtures/hello.txt";
+		var renamedPath = obj;
+		helper(obj, originalPath, renamedPath, done);
+	});
+
+	// hash - path
+	it("should rename file including path with a hash", function (done) {
+
+		var obj = {
+			prefix: "test/elsewhere/",
+			suffix: '-hash',
+			ext: ".md"
+		};
+
+		var originalPath = "test/fixtures/hello.txt";
+		var renamedPath = "test/elsewhere/hello-hash.md";
+		helper(obj, originalPath, renamedPath, done);
+	});
+
+	// function - path
+	it("should rename file including path with a function", function (done) {
+
+		var obj = function() {
+			return "test/elsewhere/hello-function.md";
+		}
+		var originalPath = "test/fixtures/hello.txt";
+		var renamedPath = "test/elsewhere/hello-function.md";
+		helper(obj, originalPath, renamedPath, done);
+	});
+
 });
