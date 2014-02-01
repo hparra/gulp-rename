@@ -18,7 +18,7 @@
     "url": "git://github.com/hparra/gulp-rename.git"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "mocha test/*.spec.js"
   },
   "dependencies": {
     "map-stream": "~0.0.4"
