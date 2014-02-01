@@ -38,7 +38,20 @@ module.exports = function (obj) {
 			callback(new Error("Unsupported renaming parameter type supplied"), undefined);
 		}
 
-		file.path = path.join(dir, finalName);
+		var newDir = path.dirname(finalName);
+
+		if (newDir === ".") {
+
+			file.path = path.join(dir, finalName);
+
+		} else {
+
+			var finalPath = path.join(file.cwd, finalName);
+			file.path = path.relative(file.cwd, finalPath);
+			file.base = path.dirname(finalPath) + '/';
+
+		}
+
 		callback(null, file);
 	}
 
