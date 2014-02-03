@@ -11,8 +11,7 @@ module.exports = function (obj) {
 		}
 
 		// helper variables
-		var relativePath = path.relative(file.cwd, file.path),
-			dir = path.dirname(relativePath),
+		var dir = path.dirname(file.path),
 			firstname = file.path.substr(file.path.indexOf(".", 1)),
 			ext = file.path.substr(file.path.lastIndexOf(".")),
 			base = path.basename(file.path, ext),
