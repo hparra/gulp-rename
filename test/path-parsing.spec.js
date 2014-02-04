@@ -45,6 +45,17 @@ describe("gulp-rename path parsing", function () {
 				helper(srcPattern, obj, null, done);
 			});
 		});
+
+		context("when src pattern includes `base` option", function () {
+			it.skip("dirname is path from given directory to file", function (done) {
+				var srcPattern = "test/**/*.min.txt";
+				var srcOptions = {base: process.cwd()};
+				var obj = function (path) {
+					path.dirname.should.equal("test/fixtures");
+				};
+				helper({pattern: srcPattern, options: srcOptions}, obj, null, done);
+			});
+		});
 	});
 
 	describe("basename", function () {

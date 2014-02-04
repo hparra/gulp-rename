@@ -7,8 +7,10 @@ var Path = require("path"),
 	gulp = require("gulp"),
 	rename = require("../");
 
-global.helper = function (srcPattern, obj, expectedPath, done) {
-	var stream = gulp.src(srcPattern).pipe(rename(obj));
+global.helper = function (srcArgs, obj, expectedPath, done) {
+	var srcPattern = srcArgs.pattern || srcArgs;
+	var srcOptions = srcArgs.options || {};
+	var stream = gulp.src(srcPattern, srcOptions).pipe(rename(obj));
 	stream.on("error", done);
 	if (expectedPath) {
 		stream.on("data", function (file) {
