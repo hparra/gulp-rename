@@ -11,7 +11,11 @@ global.helper = function (srcArgs, obj, expectedPath, done) {
 	var srcPattern = srcArgs.pattern || srcArgs;
 	var srcOptions = srcArgs.options || {};
 	var stream = gulp.src(srcPattern, srcOptions).pipe(rename(obj));
+	var count = 0;
 	stream.on("error", done);
+	stream.on("data", function () {
+		count++;
+	});
 	if (expectedPath) {
 		stream.on("data", function (file) {
 			var resolvedExpectedPath = Path.resolve(expectedPath);
@@ -19,7 +23,10 @@ global.helper = function (srcArgs, obj, expectedPath, done) {
 			resolvedActualPath.should.equal(resolvedExpectedPath);
 		});
 	}
-	stream.on("end", done);
+	stream.on("end", function () {
+		count.should.be.greaterThan(0);
+		done.apply(this, arguments);
+	});
 };
 
 global.helperError = function (srcPattern, obj, expectedError, done) {
