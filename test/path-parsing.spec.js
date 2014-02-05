@@ -26,28 +26,44 @@ describe("gulp-rename path parsing", function () {
 			});
 		});
 
-		context("when src pattern contains simple directory glob", function () {
+		var dirname_helper = function (srcPattern, expectedPath) {
 			it("dirname is path from directory glob to file", function (done) {
-				var srcPattern = "test/*/*.min.txt";
 				var obj = function (path) {
-					path.dirname.should.equal("fixtures");
+					path.dirname.should.match(/^fixtures[0-9]?$/);
 				};
 				helper(srcPattern, obj, null, done);
 			});
+		}
+
+		context("when src pattern matches a directory with *", function () {
+			dirname_helper("test/*/*.min.txt");
 		});
 
-		context("when src pattern contains descendent directory glob", function () {
-			it("dirname is path from directory glob to file", function (done) {
-				var srcPattern = "test/**/*.min.txt";
-				var obj = function (path) {
-					path.dirname.should.equal("fixtures");
-				};
-				helper(srcPattern, obj, null, done);
-			});
+		context("when src pattern matches a directory with **", function () {
+			dirname_helper("test/**/*.min.txt");
 		});
 
-		context("when src pattern includes `base` option", function () {
-			it.skip("dirname is path from given directory to file", function (done) {
+		context("when src pattern matches a directory with [...]", function () {
+			dirname_helper("test/fixt[a-z]res/*.min.txt");
+		});
+
+		/* SKIP: glob2base does not handle brace expansion as expected. See wearefractal/glob2base#1 */
+		context.skip("when src pattern matches a directory with {...,...}", function () {
+			dirname_helper("test/f{ri,ixtur}es/*.min.txt");
+		});
+
+		/* SKIP: glob2base does not handle brace expansion as expected. See wearefractal/glob2base#1 */
+		context.skip("when src pattern matches a directory with {#..#}", function () {
+			dirname_helper("test/fixtures{0..9}/*.min.txt");
+		});
+
+		context("when src pattern matches a directory with an extglob", function () {
+			dirname_helper("test/f+(ri|ixtur)es/*.min.txt");
+		});
+
+		/* requires glob-stream >= 3.1.0 */
+		context.skip("when src pattern includes `base` option", function () {
+			it("dirname is path from given directory to file", function (done) {
 				var srcPattern = "test/**/*.min.txt";
 				var srcOptions = {base: process.cwd()};
 				var obj = function (path) {
