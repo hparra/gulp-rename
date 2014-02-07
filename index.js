@@ -1,44 +1,51 @@
 var map = require("map-stream"),
-	path = require("path");
+	Path = require("path");
 
 module.exports = function (obj) {
 	"use strict";
 
+	function parsePath(path) {
+		var extname = Path.extname(path);
+		return {
+			dirname: Path.dirname(path),
+			basename: Path.basename(path, extname),
+			extname: extname
+		};
+	}
+
 	function rename(file, callback) {
 
-		if (!obj) {
-			callback(new Error("No renaming parameter supplied"), undefined);
-		}
+		var parsedPath = parsePath(file.relative);
+		var path;
 
-		// helper variables
-		var relativePath = path.relative(file.cwd, file.path),
-			dir = path.dirname(relativePath),
-			firstname = file.path.substr(file.path.indexOf(".", 1)),
-			ext = file.path.substr(file.path.lastIndexOf(".")),
-			base = path.basename(file.path, ext),
-			finalName = "";
+		var type = typeof obj;
 
-		if (typeof obj === "string") {
+		if (type === "string" && obj !== "") {
 
-			finalName = obj;
+			path = obj;
 
-		} else if (typeof obj === "function") {
+		} else if (type === "function") {
 
-			finalName = obj(dir, base, ext);
+			var result = obj(parsedPath) || parsedPath;
+			path = Path.join(result.dirname, result.basename + result.extname);
 
-		} else if (typeof obj === "object") {
+		} else if (type === "object" && obj !== undefined && obj !== null) {
 
-			var prefix = obj.prefix || "",
+			var dirname = obj.dirname || parsedPath.dirname,
+				prefix = obj.prefix || "",
 				suffix = obj.suffix || "",
-				extension = obj.ext || ext;
+				basename = obj.basename || parsedPath.basename,
+				extname = obj.extname || parsedPath.extname;
 
-			finalName = prefix + path.basename(file.path, firstname) + suffix + extension;
+			path = Path.join(dirname, prefix + basename + suffix + extname);
 
 		} else {
 			callback(new Error("Unsupported renaming parameter type supplied"), undefined);
+			return;
 		}
 
-		file.path = path.join(dir, finalName);
+		file.path = Path.join(file.base, path);
+
 		callback(null, file);
 	}
 
