@@ -45,6 +45,20 @@ describe("gulp-rename", function () {
 				var expectedPath = "test/elsewhere/hello.txt";
 				helper(srcPattern, obj, expectedPath, done);
 			});
+			it("removes dirname with './'", function (done) {
+				var obj = {
+					dirname: "./",
+				};
+				var expectedPath = "test/hello.txt";
+				helper(srcPattern, obj, expectedPath, done);
+			});
+			it("removes dirname with empty string", function (done) {
+				var obj = {
+					dirname: "",
+				};
+				var expectedPath = "test/hello.txt";
+				helper(srcPattern, obj, expectedPath, done);
+			});
 		});
 
 		context("with prefix value", function () {
@@ -65,6 +79,14 @@ describe("gulp-rename", function () {
 				var expectedPath = "test/fixtures/aloha.txt";
 				helper(srcPattern, obj, expectedPath, done);
 			});
+			it("removes basename with empty string (for consistency)", function (done) {
+				var obj = {
+					prefix: "aloha",
+					basename: "",
+				};
+				var expectedPath = "test/fixtures/aloha.txt";
+				helper(srcPattern, obj, expectedPath, done);
+			});
 		});
 
 		context("with suffix value", function () {
@@ -78,11 +100,18 @@ describe("gulp-rename", function () {
 		});
 
 		context("with extname value", function () {
-			it("replace extname with value", function (done) {
+			it("replaces extname with value", function (done) {
 				var obj = {
 					extname: ".md",
 				};
 				var expectedPath = "test/fixtures/hello.md";
+				helper(srcPattern, obj, expectedPath, done);
+			});
+			it("removes extname with empty string", function (done) {
+				var obj = {
+					extname: "",
+				};
+				var expectedPath = "test/fixtures/hello";
 				helper(srcPattern, obj, expectedPath, done);
 			});
 		});
