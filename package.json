@@ -20,10 +20,8 @@
   "scripts": {
     "test": "mocha test/*.spec.js"
   },
-  "dependencies": {
-    "map-stream": ">=0.0.4"
-  },
   "devDependencies": {
+    "map-stream": ">=0.0.4",
     "mocha": ">=1.15.0",
     "should": ">=2.1.0",
     "gulp": ">=3.0.0",
