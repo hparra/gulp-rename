@@ -20,17 +20,15 @@
   "scripts": {
     "test": "mocha test/*.spec.js"
   },
-  "dependencies": {
-    "map-stream": ">=0.0.4"
-  },
   "devDependencies": {
+    "map-stream": ">=0.0.4",
     "mocha": ">=1.15.0",
     "should": ">=2.1.0",
     "gulp": ">=3.0.0",
     "gulp-jshint": ">=1.1.0"
   },
   "engines": {
-    "node": ">=0.8.0",
+    "node": ">=0.10.0",
     "npm": ">=1.2.10"
   },
   "licenses": [

@@ -1,8 +1,10 @@
-var map = require("map-stream"),
+var Stream = require("stream"),
 	Path = require("path");
 
-module.exports = function (obj) {
+function gulpRename(obj) {
 	"use strict";
+
+  var stream = new Stream.Transform({objectMode: true});
 
 	function parsePath(path) {
 		var extname = Path.extname(path);
@@ -13,7 +15,7 @@ module.exports = function (obj) {
 		};
 	}
 
-	function rename(file, callback) {
+	stream._transform = function(file, unused, callback) {
 
 		var parsedPath = parsePath(file.relative);
 		var path;
@@ -49,5 +51,8 @@ module.exports = function (obj) {
 		callback(null, file);
 	}
 
-	return map(rename);
+	return stream;
 };
+
+module.exports = gulpRename;
+
