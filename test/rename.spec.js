@@ -150,6 +150,14 @@ describe("gulp-rename", function () {
 			helper(srcPattern, obj, expectedPath, done);
 		});
 
+		it("receives object with file", function (done) {
+			var obj = function (path) {
+				path.file.should.be.an.Object
+			};
+			var expectedPath = "test/fixtures/hello.txt";
+			helper(srcPattern, obj, expectedPath, done);
+		});
+
 		it("can return a whole new object", function (done) {
 			var obj = function (/*path*/) {
 				return {
