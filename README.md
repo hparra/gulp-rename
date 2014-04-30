@@ -17,6 +17,7 @@ gulp.src("./src/main/text/hello.txt")
 // rename via function
 gulp.src("./src/**/hello.txt")
 	.pipe(rename(function (path) {
+		// path.file exists for reference
 		path.dirname += "/ciao";
 		path.basename += "-goodbye";
 		path.extname = ".md"
@@ -45,6 +46,7 @@ gulp.src("./src/main/text/hello.txt", { base: process.cwd() })
   * KNOWN ISSUE: The base set when using brace expansion may not be what you expect (See wearefractal/glob2base#1). Use the `base` option described above.
 * `basename` is the filename without the extension like path.basename(filename, path.extname(filename)).
 * `extname` is the file extension including the '.' like path.extname(filename).
+* `file` is the file object, included for reference.
 
 ## License
 
