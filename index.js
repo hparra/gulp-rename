@@ -6,18 +6,21 @@ function gulpRename(obj) {
 
   var stream = new Stream.Transform({objectMode: true});
 
-	function parsePath(path) {
+	function parsePath(file) {
+		var path = file.relative;
 		var extname = Path.extname(path);
+		
 		return {
 			dirname: Path.dirname(path),
 			basename: Path.basename(path, extname),
-			extname: extname
+			extname: extname,
+			file: file
 		};
 	}
 
 	stream._transform = function(file, unused, callback) {
 
-		var parsedPath = parsePath(file.relative);
+		var parsedPath = parsePath(file);
 		var path;
 
 		var type = typeof obj;
