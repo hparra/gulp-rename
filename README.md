@@ -2,6 +2,8 @@
 
 gulp-rename is a [gulp](https://github.com/wearefractal/gulp) plugin to rename files easily.
 
+[![NPM](https://nodei.co/npm/gulp-rename.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/gulp-rename/)
+
 ## Usage
 
 gulp-rename provides simple file renaming methods.
