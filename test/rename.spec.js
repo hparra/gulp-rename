@@ -150,7 +150,7 @@ describe("gulp-rename", function () {
 			helper(srcPattern, obj, expectedPath, done);
 		});
 
-		it("can return a whole new object", function (done) {
+		it("ignores the return value", function (done) {
 			var obj = function (/*path*/) {
 				return {
 					dirname: "elsewhere",
@@ -158,7 +158,16 @@ describe("gulp-rename", function () {
 					extname: ".md"
 				};
 			};
-			var expectedPath = "test/elsewhere/aloha.md";
+			var expectedPath = "test/fixtures/hello.txt";
+			helper(srcPattern, obj, expectedPath, done);
+		});
+
+		it("receives object with extname even if a different value is returned", function (done) {
+			var obj = function (path) {
+				path.extname.should.equal(".txt");
+				return path.extname = ".md";
+			};
+			var expectedPath = "test/fixtures/hello.md";
 			helper(srcPattern, obj, expectedPath, done);
 		});
 	});
