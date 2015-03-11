@@ -28,8 +28,8 @@ function gulpRename(obj) {
 
 		} else if (type === "function") {
 
-			var result = obj(parsedPath) || parsedPath;
-			path = Path.join(result.dirname, result.basename + result.extname);
+			obj(parsedPath);
+			path = Path.join(parsedPath.dirname, parsedPath.basename + parsedPath.extname);
 
 		} else if (type === "object" && obj !== undefined && obj !== null) {
 
