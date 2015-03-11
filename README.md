@@ -17,6 +17,7 @@ gulp.src("./src/main/text/hello.txt")
 // rename via function
 gulp.src("./src/**/hello.txt")
 	.pipe(rename(function (path) {
+		// path.file exists for reference
 		path.dirname += "/ciao";
 		path.basename += "-goodbye";
 		path.extname = ".md"
@@ -44,6 +45,7 @@ gulp.src("./src/main/text/hello.txt", { base: process.cwd() })
   * `gulp.dest()` renames the directories between `process.cwd()` and `dirname` (i.e. the base relative to CWD). Use `dirname` to rename the directories matched by the glob or descendents of the base of option.
 * `basename` is the filename without the extension like path.basename(filename, path.extname(filename)).
 * `extname` is the file extension including the '.' like path.extname(filename).
+* `file` is the file object, included for reference.
 
 ## License
 
