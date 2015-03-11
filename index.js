@@ -28,7 +28,7 @@ function gulpRename(obj) {
 
 		} else if (type === "function") {
 
-			var result = obj(parsedPath) || parsedPath;
+			var result = obj(parsedPath, file) || parsedPath;
 			path = Path.join(result.dirname, result.basename + result.extname);
 
 		} else if (type === "object" && obj !== undefined && obj !== null) {

@@ -16,7 +16,7 @@ gulp.src("./src/main/text/hello.txt")
 
 // rename via function
 gulp.src("./src/**/hello.txt")
-	.pipe(rename(function (path) {
+	.pipe(rename(function (path, file) {
 		path.dirname += "/ciao";
 		path.basename += "-goodbye";
 		path.extname = ".md"
