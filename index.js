@@ -48,6 +48,11 @@ function gulpRename(obj) {
 
 		file.path = Path.join(file.base, path);
 
+		// Rename sourcemap if present
+    if (file.sourceMap) {
+      file.sourceMap.file = file.relative;
+    }
+
 		callback(null, file);
 	}
 
@@ -55,4 +60,3 @@ function gulpRename(obj) {
 };
 
 module.exports = gulpRename;
-
