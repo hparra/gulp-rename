@@ -24,6 +24,8 @@
     "test": "mocha test/*.spec.js"
   },
   "devDependencies": {
+    "gulp-sourcemaps": "^1.5.0",
+    "gulp-util": "^3.0.4",
     "map-stream": ">=0.0.4",
     "mocha": ">=1.15.0",
     "should": ">=2.1.0",

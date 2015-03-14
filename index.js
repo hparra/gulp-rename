@@ -4,7 +4,7 @@ var Stream = require("stream"),
 function gulpRename(obj) {
 	"use strict";
 
-  var stream = new Stream.Transform({objectMode: true});
+	var stream = new Stream.Transform({objectMode: true});
 
 	function parsePath(path) {
 		var extname = Path.extname(path);
@@ -48,6 +48,11 @@ function gulpRename(obj) {
 
 		file.path = Path.join(file.base, path);
 
+		// Rename sourcemap if present
+		if (file.sourceMap) {
+			file.sourceMap.file = file.relative;
+		}
+
 		callback(null, file);
 	}
 
@@ -55,4 +60,3 @@ function gulpRename(obj) {
 };
 
 module.exports = gulpRename;
-
