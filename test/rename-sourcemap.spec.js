@@ -13,12 +13,12 @@ describe("gulp-rename", function () {
 		it ("updates source map file to match relative path of renamed file", function (done) {
 
 			var init = sourceMaps.init();
-			var stream = rename({ prefix: "test-" });
-
-			init.pipe(stream);
+			var stream = init
+				.pipe(rename({ prefix: "test-" }))
+				.pipe(rename({ prefix: "test-" }));
 
 			stream.on("data", function (file) {
-				file.sourceMap.file.should.equal("test-fixture.css");
+				file.sourceMap.file.should.equal("test-test-fixture.css");
 				file.sourceMap.file.should.equal(file.relative);
 				done();
 			});
