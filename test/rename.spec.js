@@ -165,7 +165,7 @@ describe("gulp-rename", function () {
 		it("receives object with extname even if a different value is returned", function (done) {
 			var obj = function (path) {
 				path.extname.should.equal(".txt");
-				return path.extname = ".md";
+				path.extname = ".md";
 			};
 			var expectedPath = "test/fixtures/hello.md";
 			helper(srcPattern, obj, expectedPath, done);

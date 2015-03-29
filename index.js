@@ -33,11 +33,11 @@ function gulpRename(obj) {
 
 		} else if (type === "object" && obj !== undefined && obj !== null) {
 
-			var dirname = 'dirname' in obj ? obj.dirname : parsedPath.dirname,
+			var dirname = "dirname" in obj ? obj.dirname : parsedPath.dirname,
 				prefix = obj.prefix || "",
 				suffix = obj.suffix || "",
-				basename = 'basename' in obj ? obj.basename : parsedPath.basename,
-				extname = 'extname' in obj ? obj.extname : parsedPath.extname;
+				basename = "basename" in obj ? obj.basename : parsedPath.basename,
+				extname = "extname" in obj ? obj.extname : parsedPath.extname;
 
 			path = Path.join(dirname, prefix + basename + suffix + extname);
 
@@ -54,9 +54,9 @@ function gulpRename(obj) {
 		}
 
 		callback(null, file);
-	}
+	};
 
 	return stream;
-};
+}
 
 module.exports = gulpRename;
