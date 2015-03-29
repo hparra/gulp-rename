@@ -9,7 +9,8 @@ var gulp = require("gulp"),
 gulp.task("jshint", function () {
 	return gulp.src(["./*.js", "test/**/*.js"])
 		.pipe(jshint())
-		.pipe(jshint.reporter("default"));
+		.pipe(jshint.reporter("default"))
+		.pipe(jshint.reporter("fail"));
 });
 
 gulp.task("mocha", function () {
