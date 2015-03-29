@@ -21,16 +21,17 @@
     "url": "git://github.com/hparra/gulp-rename.git"
   },
   "scripts": {
-    "test": "mocha test/*.spec.js"
+    "pretest": "jshint index.js test/",
+    "test": "mocha"
   },
   "devDependencies": {
+    "gulp": ">=3.0.0",
     "gulp-sourcemaps": "^1.5.0",
     "gulp-util": "^3.0.4",
+    "jshint": "^2.6.3",
     "map-stream": ">=0.0.4",
     "mocha": ">=1.15.0",
-    "should": ">=2.1.0",
-    "gulp": ">=3.0.0",
-    "gulp-jshint": ">=1.1.0"
+    "should": ">=2.1.0"
   },
   "engines": {
     "node": ">=0.10.0",
