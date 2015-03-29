@@ -1,4 +1,4 @@
-/*global describe, context, it, beforeEach, helper, helperError */
+/*global helper, helperError */
 "use strict";
 
 require("./spec-helper");
@@ -165,7 +165,7 @@ describe("gulp-rename", function () {
 		it("receives object with extname even if a different value is returned", function (done) {
 			var obj = function (path) {
 				path.extname.should.equal(".txt");
-				return path.extname = ".md";
+				return path.extname = ".md"; // jshint ignore:line
 			};
 			var expectedPath = "test/fixtures/hello.md";
 			helper(srcPattern, obj, expectedPath, done);
