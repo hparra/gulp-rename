@@ -1,4 +1,4 @@
-/*global describe, context, it, beforeEach, helper, helperError */
+/*global helper, helperError */
 "use strict";
 
 require("./spec-helper");
