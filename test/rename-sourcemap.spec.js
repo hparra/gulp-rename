@@ -1,4 +1,3 @@
-/* global context, describe, it */
 "use strict";
 
 var rename = require("../index");
