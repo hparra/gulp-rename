@@ -16,28 +16,28 @@ var rename = require("gulp-rename");
 
 // rename via string
 gulp.src("./src/main/text/hello.txt")
-	.pipe(rename("main/text/ciao/goodbye.md"))
-	.pipe(gulp.dest("./dist")); // ./dist/main/text/ciao/goodbye.md
+  .pipe(rename("main/text/ciao/goodbye.md"))
+  .pipe(gulp.dest("./dist")); // ./dist/main/text/ciao/goodbye.md
 
 // rename via function
 gulp.src("./src/**/hello.txt")
-	.pipe(rename(function (path) {
-		path.dirname += "/ciao";
-		path.basename += "-goodbye";
-		path.extname = ".md"
-	}))
-	.pipe(gulp.dest("./dist")); // ./dist/main/text/ciao/hello-goodbye.md
+  .pipe(rename(function (path) {
+    path.dirname += "/ciao";
+    path.basename += "-goodbye";
+    path.extname = ".md"
+  }))
+  .pipe(gulp.dest("./dist")); // ./dist/main/text/ciao/hello-goodbye.md
 
 // rename via hash
 gulp.src("./src/main/text/hello.txt", { base: process.cwd() })
-	.pipe(rename({
-		dirname: "main/text/ciao",
-		basename: "aloha",
-		prefix: "bonjour-",
-		suffix: "-hola",
-		extname: ".md"
-	}))
-	.pipe(gulp.dest("./dist")); // ./dist/main/text/ciao/bonjour-aloha-hola.md
+  .pipe(rename({
+    dirname: "main/text/ciao",
+    basename: "aloha",
+    prefix: "bonjour-",
+    suffix: "-hola",
+    extname: ".md"
+  }))
+  .pipe(gulp.dest("./dist")); // ./dist/main/text/ciao/bonjour-aloha-hola.md
 ```
 
 **See test/rename.spec.js for more examples and test/path-parsing.spec.js for hairy details.**

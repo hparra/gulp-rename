@@ -1,4 +1,4 @@
 {
-	"extends": "../.jshintrc",
-	"mocha": true
+  "extends": "../.jshintrc",
+  "mocha": true
 }
