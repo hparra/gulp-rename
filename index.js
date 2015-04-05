@@ -16,7 +16,7 @@ function gulpRename(obj) {
     };
   }
 
-  stream._transform = function(file, unused, callback) {
+  stream._transform = function (file, unused, callback) {
 
     var parsedPath = parsePath(file.relative);
     var path;

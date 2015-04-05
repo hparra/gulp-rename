@@ -1,0 +1,13 @@
+{
+  "validateIndentation": 2,
+  "validateQuoteMarks": "'",
+  "requireSpacesInFunctionExpression": {
+    "beforeOpeningCurlyBrace": true,
+    "beforeOpeningRoundBrace": true
+  },
+  "requireSemicolons": true,
+  "requireLineFeedAtFileEnd": true,
+  "disallowQuotedKeysInObjects": true,
+  "disallowMultipleLineStrings": true,
+  "disallowMultipleSpaces": true
+}
