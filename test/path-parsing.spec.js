@@ -47,8 +47,7 @@ describe('gulp-rename path parsing', function () {
       dirnameHelper('test/fixt[a-z]res/*.min.txt');
     });
 
-    /* SKIP: glob2base does not handle brace expansion as expected. See wearefractal/glob2base#1 */
-    context.skip('when src pattern matches a directory with {...,...}', function () {
+    context('when src pattern matches a directory with {...,...}', function () {
       dirnameHelper('test/f{ri,ixtur}es/*.min.txt');
     });
 
@@ -61,8 +60,7 @@ describe('gulp-rename path parsing', function () {
       dirnameHelper('test/f+(ri|ixtur)es/*.min.txt');
     });
 
-    /* requires glob-stream >= 3.1.0 */
-    context.skip('when src pattern includes `base` option', function () {
+    context('when src pattern includes `base` option', function () {
       it('dirname is path from given directory to file', function (done) {
         var srcPattern = 'test/**/*.min.txt';
         var srcOptions = {base: process.cwd()};
