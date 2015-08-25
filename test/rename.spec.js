@@ -2,6 +2,9 @@
 /* global helper, helperError */
 
 require('./spec-helper');
+var rename = require('../');
+var gulp = require('gulp');
+var Path = require('path');
 
 describe('gulp-rename', function () {
   context('with string parameter', function () {
@@ -169,6 +172,50 @@ describe('gulp-rename', function () {
       };
       var expectedPath = 'test/fixtures/hello.md';
       helper(srcPattern, obj, expectedPath, done);
+    });
+  });
+
+  context('in parallel streams', function () {
+    it('only changes the file in the current stream', function (done) {
+      var files = gulp.src('test/fixtures/hello.txt');
+
+      var pipe1 = files.pipe(rename({suffix: '-1'}));
+      var pipe2 = files.pipe(rename({suffix: '-2'}));
+      var end1 = false;
+      var end2 = false;
+      var file1;
+      var file2;
+
+      pipe1
+        .on('data', function (file) {
+          file1 = file;
+        })
+        .on('end', function () {
+          end1 = true;
+
+          if (end2) {
+            return check();
+          }
+        });
+
+      pipe2
+        .on('data', function (file) {
+          file2 = file;
+        })
+        .on('end', function () {
+          end2 = true;
+
+          if (end1) {
+            return check();
+          }
+        });
+
+      function check() {
+        file1.path.should.equal(Path.resolve('test/fixtures/hello-1.txt'));
+        file2.path.should.equal(Path.resolve('test/fixtures/hello-2.txt'));
+
+        return done();
+      }
     });
   });
 
