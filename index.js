@@ -51,7 +51,11 @@ function gulpRename(obj) {
 
     }
 
-    file.path = Path.join(file.base, path);
+    if (parsedPath.relative === true){
+      file.path = path;
+    } else {
+      file.path = Path.join(file.base, path);
+    }
 
     // Rename sourcemap if present
     if (file.sourceMap) {
