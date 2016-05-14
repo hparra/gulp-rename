@@ -29,6 +29,17 @@ gulp.src("./src/**/hello.txt")
   }))
   .pipe(gulp.dest("./dist")); // ./dist/main/text/ciao/hello-goodbye.md
 
+// rename with path relative to top-level glob, via function
+gulp.src("./src/**/hello.txt")
+  .pipe(rename(function (path) {
+    path.dirname += "/ciao";
+    path.basename += "-goodbye";
+    path.extname = ".md";
+    path.relative = true;
+    return path;
+  }))
+  .pipe(gulp.dest("./dist")); // ./dist/main/text/ciao/hello-goodbye.md
+
 // rename via hash
 gulp.src("./src/main/text/hello.txt", { base: process.cwd() })
   .pipe(rename({
