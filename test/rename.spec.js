@@ -40,6 +40,16 @@ describe('gulp-rename', function () {
       });
     });
 
+    context('with relative flag', function () {
+      it('removes the path before the glob', function (done) {
+        var obj = {
+          relative: true
+        };
+        var expectedPath = 'fixtures/hello.txt';
+        helper(srcPattern, obj, expectedPath, done);
+      });
+    });
+
     context('with dirname value', function () {
       it('replaces dirname with value', function (done) {
         var obj = {
@@ -171,6 +181,15 @@ describe('gulp-rename', function () {
         path.extname = '.md';
       };
       var expectedPath = 'test/fixtures/hello.md';
+      helper(srcPattern, obj, expectedPath, done);
+    });
+    
+    it('removes the path before the glob with relative flag === true', function (done) {
+      var obj = function (path) {
+        path.dirname.should.equal('fixtures');
+        path.relative = true;
+      };
+      var expectedPath = 'fixtures/hello.txt';
       helper(srcPattern, obj, expectedPath, done);
     });
   });
