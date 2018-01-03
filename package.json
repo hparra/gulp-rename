@@ -27,12 +27,12 @@
   "devDependencies": {
     "gulp": ">=3.0.0",
     "gulp-sourcemaps": "^1.5.0",
-    "gulp-util": "^3.0.4",
     "jscs": "^1.12.0",
     "jshint": "^2.6.3",
     "map-stream": ">=0.0.4",
     "mocha": ">=1.15.0",
-    "should": ">=2.1.0"
+    "should": ">=2.1.0",
+    "vinyl": "^2.1.0"
   },
   "engines": {
     "node": ">=0.10.0",

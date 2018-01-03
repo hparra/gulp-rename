@@ -1,7 +1,7 @@
 'use strict';
 
 var rename = require('../index');
-var gutil = require('gulp-util');
+var Vinyl = require('vinyl');
 var sourceMaps = require('gulp-sourcemaps');
 require('should');
 
@@ -22,7 +22,7 @@ describe('gulp-rename', function () {
         done();
       });
 
-      init.write(new gutil.File({
+      init.write(new Vinyl({
         base: 'fixtures',
         path: 'fixtures/fixture.css',
         contents: new Buffer('')
