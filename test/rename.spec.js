@@ -186,6 +186,13 @@ describe('gulp-rename', function () {
       var file1;
       var file2;
 
+      function check() {
+        file1.path.should.equal(Path.resolve('test/fixtures/hello-1.txt'));
+        file2.path.should.equal(Path.resolve('test/fixtures/hello-2.txt'));
+
+        return done();
+      }
+
       pipe1
         .on('data', function (file) {
           file1 = file;
@@ -209,13 +216,6 @@ describe('gulp-rename', function () {
             return check();
           }
         });
-
-      function check() {
-        file1.path.should.equal(Path.resolve('test/fixtures/hello-1.txt'));
-        file2.path.should.equal(Path.resolve('test/fixtures/hello-2.txt'));
-
-        return done();
-      }
     });
   });
 
