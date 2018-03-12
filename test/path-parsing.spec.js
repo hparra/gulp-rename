@@ -65,7 +65,7 @@ describe('gulp-rename path parsing', function () {
         var srcPattern = 'test/**/*.min.txt';
         var srcOptions = {base: process.cwd()};
         var obj = function (path) {
-          path.dirname.should.equal('test/fixtures');
+          path.dirname.should.equal(Path.join('test', 'fixtures'));
         };
         helper({pattern: srcPattern, options: srcOptions}, obj, null, done);
       });
