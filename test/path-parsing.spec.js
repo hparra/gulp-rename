@@ -102,4 +102,15 @@ describe('gulp-rename path parsing', function () {
       helper(srcPattern, obj, null, done);
     });
   });
+
+  describe('multiExt option', function () {
+    it('includes multiple extensions in extname', function (done) {
+      var srcPattern = 'test/fixtures/hello.min.txt';
+      var obj = function (path) {
+        path.extname.should.equal('.min.txt');
+        path.basename.should.equal('hello');
+      };
+      helper(srcPattern, obj, null, done, { multiExt: true });
+    });
+  });
 });
