@@ -113,4 +113,27 @@ describe('gulp-rename path parsing', function () {
       helper(srcPattern, obj, null, done, { multiExt: true });
     });
   });
+
+  describe('original file context', function () {
+    it('passed to plugin as second argument', function (done) {
+      var srcPattern = 'test/fixtures/hello.min.txt';
+      var obj = function (path, file) {
+        file.should.be.instanceof(Object);
+        file.should.be.ok();
+      };
+      helper(srcPattern, obj, null, done, { multiExt: true });
+    });
+
+    it('has expected properties', function (done) {
+      var srcPattern = 'test/fixtures/hello.min.txt';
+      var obj = function (path, file) {
+        file.path.should.equal(Path.resolve(srcPattern));
+        file.base.should.equal(Path.dirname(Path.resolve(srcPattern)));
+        file.basename.should.equal(Path.basename(srcPattern));
+        file.relative.should.equal(Path.basename(srcPattern));
+        file.extname.should.equal(Path.extname(srcPattern));
+      };
+      helper(srcPattern, obj, null, done, { multiExt: true });
+    });
+  });
 });
