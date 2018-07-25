@@ -34,6 +34,16 @@ describe('gulp-rename path parsing', function () {
         helper(srcPattern, obj, null, done);
       });
     };
+    
+    context('when src pattern matches a directory with **, but relative flag is supplied', function () {
+      var srcPattern = 'test/**/*.min.txt'
+      it('dirname is path from directory glob to file, dropping path prior to glob', function (done) {
+        var obj = function (path) {
+          path.dirname.should.match(/fixtures[0-9]?$/);
+        };
+        helper(srcPattern, obj, null, done);
+      });
+    });
 
     context('when src pattern matches a directory with *', function () {
       dirnameHelper('test/*/*.min.txt');
