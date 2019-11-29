@@ -153,15 +153,15 @@ describe('gulp-rename', function () {
       helper(srcPattern, obj, expectedPath, done);
     });
 
-    it('ignores the return value', function (done) {
-      var obj = function (/*path*/) {
+    it('receives object from return value', function (done) {
+      var obj = function (path) {
         return {
-          dirname: 'elsewhere',
-          basename: 'aloha',
+          dirname: path.dirname,
+          basename: path.basename,
           extname: '.md'
         };
       };
-      var expectedPath = 'test/fixtures/hello.txt';
+      var expectedPath = 'test/fixtures/hello.md';
       helper(srcPattern, obj, expectedPath, done);
     });
 
