@@ -34,7 +34,7 @@ function gulpRename(obj, options) {
     } else if (type === 'function') {
 
       let newParsedPath = obj(parsedPath, file);
-      if (typeof newParsedPath === 'object') {
+      if (typeof newParsedPath === 'object' && newParsedPath !== null) {
         parsedPath = newParsedPath;
       }
       
