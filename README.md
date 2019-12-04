@@ -63,8 +63,7 @@ gulp.src("./src/main/text/hello.txt", { base: process.cwd() })
 * `basename` is the filename without the extension like `path.basename(filename, path.extname(filename))`.
 * `extname` is the file extension including the `.` like `path.extname(filename)`.
 * when using a function, a second `file` argument is provided with the whole context and original file value.
-* when using a function, a second `file` argument is provided with the whole context and original file value
-* when using a function, if no `Object` is returned then the passed parameter object (along with any modifications) is re-used
+* when using a function, if no `Object` is returned then the passed parameter object (along with any modifications) is re-used.
 
 ## License
 
