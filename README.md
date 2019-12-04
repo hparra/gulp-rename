@@ -14,26 +14,25 @@ gulp-rename provides simple file renaming methods.
 ```javascript
 var rename = require("gulp-rename");
 
-// rename via string
+// rename to a fixed value
 gulp.src("./src/main/text/hello.txt")
   .pipe(rename("main/text/ciao/goodbye.md"))
   .pipe(gulp.dest("./dist")); // ./dist/main/text/ciao/goodbye.md
 
-// rename via function's parameter
+// rename via mutating function
 gulp.src("./src/**/hello.txt")
   .pipe(rename(function (path) {
-    // Updates the configurations in-place.
+    // Updates the object in-place
     path.dirname += "/ciao";
     path.basename += "-goodbye";
     path.extname = ".md";
   }))
   .pipe(gulp.dest("./dist")); // ./dist/main/text/ciao/hello-goodbye.md
 
-// rename via function's return value
+// rename via a map function
 gulp.src("./src/**/hello.txt")
   .pipe(rename(function (path) {
-    // Upon returning a new object, all the configurations in `path` will be discarded.
-    // Ensure to clone or re-use `path` if you want any configurations to persist.
+    // Returns a completely new object, make sure you return all keys needed!
     return {
       dirname: path.dirname + "/ciao",
       basename: path.basename + "-goodbye",
@@ -42,7 +41,7 @@ gulp.src("./src/**/hello.txt")
   }))
   .pipe(gulp.dest("./dist")); // ./dist/main/text/ciao/hello-goodbye.md
 
-// rename via hash
+// rename via a fixed object
 gulp.src("./src/main/text/hello.txt", { base: process.cwd() })
   .pipe(rename({
     dirname: "main/text/ciao",
