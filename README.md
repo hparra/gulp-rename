@@ -14,21 +14,34 @@ gulp-rename provides simple file renaming methods.
 ```javascript
 var rename = require("gulp-rename");
 
-// rename via string
+// rename to a fixed value
 gulp.src("./src/main/text/hello.txt")
   .pipe(rename("main/text/ciao/goodbye.md"))
   .pipe(gulp.dest("./dist")); // ./dist/main/text/ciao/goodbye.md
 
-// rename via function
+// rename via mutating function
 gulp.src("./src/**/hello.txt")
   .pipe(rename(function (path) {
+    // Updates the object in-place
     path.dirname += "/ciao";
     path.basename += "-goodbye";
     path.extname = ".md";
   }))
   .pipe(gulp.dest("./dist")); // ./dist/main/text/ciao/hello-goodbye.md
 
-// rename via hash
+// rename via a map function
+gulp.src("./src/**/hello.txt")
+  .pipe(rename(function (path) {
+    // Returns a completely new object, make sure you return all keys needed!
+    return {
+      dirname: path.dirname + "/ciao",
+      basename: path.basename + "-goodbye",
+      extname: ".md"
+    };
+  }))
+  .pipe(gulp.dest("./dist")); // ./dist/main/text/ciao/hello-goodbye.md
+
+// rename via a fixed object
 gulp.src("./src/main/text/hello.txt", { base: process.cwd() })
   .pipe(rename({
     dirname: "main/text/ciao",
@@ -50,6 +63,7 @@ gulp.src("./src/main/text/hello.txt", { base: process.cwd() })
 * `basename` is the filename without the extension like path.basename(filename, path.extname(filename)).
 * `extname` is the file extension including the '.' like path.extname(filename).
 * when using a function, a second `file` argument is provided with the whole context and original file value
+* when using a function, if no `Object` is returned then the passed parameter object (along with any modifications) is re-used
 
 ## License
 
