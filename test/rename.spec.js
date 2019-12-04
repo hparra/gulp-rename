@@ -165,6 +165,16 @@ describe('gulp-rename', function () {
       helper(srcPattern, obj, expectedPath, done);
     });
 
+    it('ignores null return value but uses passed object', function (done) {
+      var obj = function (path) {
+        path.extname.should.equal('.txt');
+        path.extname = '.md';
+        return null;
+      };
+      var expectedPath = 'test/fixtures/hello.md';
+      helper(srcPattern, obj, expectedPath, done);
+    });
+
     it('receives object with extname even if a different value is returned', function (done) {
       var obj = function (path) {
         path.extname.should.equal('.txt');
