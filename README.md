@@ -19,12 +19,26 @@ gulp.src("./src/main/text/hello.txt")
   .pipe(rename("main/text/ciao/goodbye.md"))
   .pipe(gulp.dest("./dist")); // ./dist/main/text/ciao/goodbye.md
 
-// rename via function
+// rename via function's parameter
 gulp.src("./src/**/hello.txt")
   .pipe(rename(function (path) {
+    // Updates the configurations in-place.
     path.dirname += "/ciao";
     path.basename += "-goodbye";
     path.extname = ".md";
+  }))
+  .pipe(gulp.dest("./dist")); // ./dist/main/text/ciao/hello-goodbye.md
+
+// rename via function's return value
+gulp.src("./src/**/hello.txt")
+  .pipe(rename(function (path) {
+    // Upon returning a new object, all the configurations in `path` will be discarded.
+    // Ensure to clone or re-use `path` if you want any configurations to persist.
+    return {
+      dirname: path.dirname + "/ciao",
+      basename: path.basename + "-goodbye",
+      extname: ".md"
+    };
   }))
   .pipe(gulp.dest("./dist")); // ./dist/main/text/ciao/hello-goodbye.md
 
@@ -50,6 +64,7 @@ gulp.src("./src/main/text/hello.txt", { base: process.cwd() })
 * `basename` is the filename without the extension like path.basename(filename, path.extname(filename)).
 * `extname` is the file extension including the '.' like path.extname(filename).
 * when using a function, a second `file` argument is provided with the whole context and original file value
+* when using a function, if no `Object` is returned then the passed parameter object (along with any modifications) is re-used
 
 ## License
 
