@@ -4,8 +4,8 @@ gulp-rename is a [gulp](https://github.com/wearefractal/gulp) plugin to rename f
 
 [![NPM](https://nodei.co/npm/gulp-rename.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/gulp-rename/)
 
-[![build status](https://secure.travis-ci.org/hparra/gulp-rename.svg)](http://travis-ci.org/hparra/gulp-rename)
-[![devDependency Status](https://david-dm.org/hparra/gulp-rename/dev-status.svg)](https://david-dm.org/hparra/gulp-rename#info=devDependencies)
+[![CI](https://github.com/hparra/gulp-rename/actions/workflows/ci.yml/badge.svg?branch=master)](http://travis-ci.org/hparra/gulp-rename)
+[![NPM VERSION](https://img.shields.io/npm/v/gulp-rename.svg?sanitize=true)](https://www.npmjs.com/package/gulp-rename)
 
 ## Usage
 
