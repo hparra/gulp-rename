@@ -1,5 +1,5 @@
 {
-  "name": "gulp-rename",
+  "name": "@veritashealth/gulp-rename",
   "version": "2.1.0",
   "description": "Rename files",
   "keywords": [
