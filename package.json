@@ -1,16 +1,16 @@
 {
   "name": "gulp-rename",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Rename files",
   "keywords": [
     "gulpplugin"
   ],
-  "homepage": "https://github.com/hparra/gulp-rename",
-  "bugs": "https://github.com/hparra/gulp-rename/issues",
+  "homepage": "https://github.com/veritashealth/gulp-rename",
+  "bugs": "https://github.com/veritashealth/gulp-rename/issues",
   "author": {
-    "name": "Hector Guillermo Parra Alvarez",
-    "email": "hector@hectorparra.com",
-    "url": "https://github.com/hparra"
+    "name": "Forked from Hector Guillermo Parra Alvarez",
+    "email": "dvenckus@veritashealth.com",
+    "url": "https://github.com/dvenckusvh"
   },
   "main": "./index.js",
   "files": [
@@ -18,7 +18,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/hparra/gulp-rename.git"
+    "url": "git://github.com/veritashealth/gulp-rename.git"
   },
   "scripts": {
     "pretest": "prettier --single-quote --write index.js test/**/*.js",
