@@ -15,11 +15,11 @@ function gulpRename(obj, options) {
     return {
       dirname: Path.dirname(path),
       basename: Path.basename(path, extname),
-      extname: extname
+      extname: extname,
     };
   }
 
-  stream._transform = function(originalFile, unused, callback) {
+  stream._transform = function (originalFile, unused, callback) {
     var file = originalFile.clone({ contents: false });
     var parsedPath = parsePath(file.relative);
     var path;
@@ -36,7 +36,7 @@ function gulpRename(obj, options) {
 
       path = Path.join(
         parsedPath.dirname,
-        parsedPath.basename + parsedPath.extname
+        parsedPath.basename + parsedPath.extname,
       );
     } else if (type === 'object' && obj !== undefined && obj !== null) {
       var dirname = 'dirname' in obj ? obj.dirname : parsedPath.dirname,
@@ -49,7 +49,7 @@ function gulpRename(obj, options) {
     } else {
       callback(
         new Error('Unsupported renaming parameter type supplied'),
-        undefined
+        undefined,
       );
       return;
     }

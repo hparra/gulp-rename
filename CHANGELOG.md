@@ -1,3 +1,7 @@
+# v2.1.0
+
+- Updated deps to gulp 5 + vinyl 3
+
 # v2.0.0
 
 #### Breaking

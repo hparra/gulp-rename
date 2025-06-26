@@ -1,6 +1,6 @@
 {
   "name": "gulp-rename",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Rename files",
   "keywords": [
     "gulpplugin"
@@ -25,13 +25,13 @@
     "test": "mocha"
   },
   "devDependencies": {
-    "gulp": "^4.0.2",
+    "gulp": "^5.0.1",
     "gulp-sourcemaps": "^2.6.5",
     "map-stream": "^0.0.7",
-    "mocha": "^6.0.0",
-    "prettier": "^1.19.1",
+    "mocha": "^11.0.0",
+    "prettier": "^3.0.0",
     "should": "^13.2.3",
-    "vinyl": "^2.0.0"
+    "vinyl": "^3.0.0"
   },
   "engines": {
     "node": ">=4"
